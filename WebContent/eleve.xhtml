@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+	<div>
+		<h:form>
+			<h:panelGrid colums="3">
+				<h:outputText value="name:"> </h:outputText>
+				<h:inputText value="#{studentMB.name}"></h:inputText>
+				
+				<h:outputText value="surname:"> </h:outputText>
+				<h:inputText value="#{studentMB.surname}"></h:inputText>
+				
+				<h:outputText value="number:"> </h:outputText>
+				<h:inputText value="#{studentMB.number}"></h:inputText>
+				
+				<h:commandButton action="#{studentMB.addStudent()}" value="add" />
+				<h:button value="Retour"
+    					outcome="/index" />
+			</h:panelGrid>
+		</h:form>
+	</div>
+	     <div>
+		<h:dataTable value="#{studentMB.ListStudent()}" var="st" classe="table1" border="1" 
+           cellpadding="2" cellspacing="2">
+           <h:column>
+				<f:facet name="header">
+					<h:outputText value="ID"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{st.id}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="NOM"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{st.name}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="SURNOM"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{st.surname}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="NUMERO"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{st.number}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Options" />
+				</f:facet>
+				
+				<h:form>
+				<h:commandLink action="#{studentMB.remove(st.id)}" value="remove" 
+				               onclick="return confirm('etes-vous sure?')"/> | 
+				<h:commandLink action="#{studentMB.edit(st)}" value="edite"/>
+				</h:form>
+				
+				
+         </h:column>
+		</h:dataTable>
+	</div>
+	 
+</h:body>
+</html>
